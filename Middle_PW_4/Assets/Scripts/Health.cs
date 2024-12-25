@@ -8,6 +8,8 @@ public class Health : MonoBehaviour, IHealth
     {
         if (health <= 0)
         {
+            EventController.onRecord?.Invoke();
+
             Destroy(gameObject);
         }
     }
