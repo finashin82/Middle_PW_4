@@ -26,7 +26,6 @@ public class FireBullet : InputData
         currentTime = timeToAttack;
     }
 
-
     void Update()
     {
         RaycastRender();

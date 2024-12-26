@@ -10,11 +10,11 @@ public class BeginAttackEnemy : MonoBehaviour
 
     [SerializeField] private int countEnemy = 10;
 
+    [SerializeField] private float timeToAttack = 1f;
+
     private int currentEnemy;
 
-    private float currentTime;
-
-    private float timeToAttack = 1f;
+    private float currentTime;    
 
     private int randPoint;
 
@@ -44,7 +44,11 @@ public class BeginAttackEnemy : MonoBehaviour
         {
             randPoint = Random.Range(0, startPoint.Length);
 
-            Instantiate(enemy, startPoint[randPoint].position, Quaternion.identity);
+            // Создаем префаб в случайной позиции из массива позиций
+            var prefab = Instantiate(enemy, startPoint[randPoint].position, Quaternion.identity);
+
+            // Разворот префаба на 180 по оси Y            
+            prefab.transform.rotation = Quaternion.AngleAxis(180, Vector3.up); ;
 
             isAttack = false;
 

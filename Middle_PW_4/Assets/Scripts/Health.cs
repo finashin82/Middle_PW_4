@@ -14,6 +14,10 @@ public class Health : MonoBehaviour, IHealth
         }
     }
 
+    /// <summary>
+    /// Нанесение урона
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(float damage)
     {
         health -= damage;

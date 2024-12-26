@@ -16,6 +16,8 @@ public class TowerRotation : InputData
     private void RotationTowerButton()
     {
         if (inputVector.x != 0)
+        {
             transform.Rotate(new Vector3(0, 0, inputVector.x * rotationSpeed * Time.deltaTime));
+        }
     }
 }
