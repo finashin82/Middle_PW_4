@@ -47,7 +47,7 @@ public class ScorePlayer : MonoBehaviour
         {
             stats.playerRecord = currentScore;
 
-            recordScoreText.text = recordScore.ToString();
+            recordScoreText.text = currentScore.ToString();
 
             WriteStatistics();
         }
