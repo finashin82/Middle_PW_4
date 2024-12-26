@@ -56,6 +56,9 @@ public class BeginAttackEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Начало атаки
+    /// </summary>
     public void BeginAttack()
     {
         isAttack = true;
