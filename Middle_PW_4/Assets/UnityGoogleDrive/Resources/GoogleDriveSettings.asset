@@ -26,9 +26,7 @@ MonoBehaviour:
     reversedClientId: 
     plistVersion: 
     bundleId: 
-  accessScopes:
-  - https://www.googleapis.com/auth/drive
-  - https://www.googleapis.com/auth/drive.appdata
+  accessScopes: []
   loopbackUri: http://localhost
   loopbackPort: 
   loopbackResponseHtml: <html><h1>Please return to the app.</h1></html>
