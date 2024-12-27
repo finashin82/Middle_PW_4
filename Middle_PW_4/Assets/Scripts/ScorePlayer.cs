@@ -9,96 +9,55 @@ public class ScorePlayer : MonoBehaviour
 {
     [SerializeField] private Text currentScoreText;
 
-    [SerializeField] private Text recordScoreText;
-
-    private string fileJsonName = "PlayerStats.json";
-
-    private PlayerStats stats;
+    [SerializeField] private Text recordScoreText;    
 
     private int currentScore;
 
     private int recordScore;
-
-    private string fileId = "577065746112-3aqbct0nakp3k1c89kvh6b23qkft8lnn.apps.googleusercontent.com";
-
-
+    
     private void OnEnable()
     {
-        EventController.onRecord += Score;
+        EventController.onScore += Score;
     }
 
     private void OnDisable()
     {
-        EventController.onRecord -= Score;
+        EventController.onScore -= Score;
     }
 
     private void Start()
     {
-        stats = new PlayerStats();
+        // Если файл json не существует, то создать файл
+        if (!File.Exists(LocalJson.filePath))
+        {
+            LocalJson.CreateJsonFile();
 
-        ReadStatistics();
+            Debug.Log("Файл создан: " + LocalJson.filePath);
+        }
+        else
+        {
+            Debug.Log("Файл уже существует.");
+        }
 
-        recordScore = stats.playerRecord;
+        LocalJson.ReadStatistics();
+
+        recordScore = LocalJson.stats.playerRecord;
 
         currentScoreText.text = "0";
 
-        recordScoreText.text = recordScore.ToString();
+        recordScoreText.text = recordScore.ToString();               
     }
 
     private void Update()
     {
         if (currentScore > recordScore)
         {
-            stats.playerRecord = currentScore;
+            LocalJson.stats.playerRecord = currentScore;
 
             recordScoreText.text = currentScore.ToString();
 
-            WriteStatistics();
+            LocalJson.WriteStatistics();
         }
-    }
-
-    /// <summary>
-    /// Запись в файл json
-    /// </summary>
-    private void WriteStatistics()
-    {
-        // Преобразуем данные в строку json
-        var jsonString = JsonUtility.ToJson(stats);
-
-        // Получаем путь к папке, где можно сохранять файлы
-        string filePath = Path.Combine(Application.persistentDataPath, fileJsonName);
-
-        // Запись в файл
-        File.WriteAllText(filePath, jsonString);
-
-        Debug.Log("Данные сохранены в файл: " + filePath);
-    }
-
-    /// <summary>
-    /// Чтение из файла
-    /// </summary>
-    private void ReadStatistics()
-    {
-        string filePath = Path.Combine(Application.persistentDataPath, fileJsonName);
-
-        // Если файл существует
-        if (File.Exists(filePath))
-        {
-            // Читаем содержимое файла
-            string jsonString = File.ReadAllText(filePath);
-
-            // Преобразуем JSON в объект
-            //PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonString);
-            stats = JsonUtility.FromJson<PlayerStats>(jsonString);
-
-            // Выводим загруженные данные            
-            Debug.Log($"Рекорд: {stats.playerRecord}");            
-        }
-        else
-        {
-            Debug.LogError("Файл не найден!");
-        }
-
     }
 
     /// <summary>
@@ -109,5 +68,12 @@ public class ScorePlayer : MonoBehaviour
         currentScore++;
 
         currentScoreText.text = currentScore.ToString();
+    }
+
+    public void ResetRecordJson()
+    {
+        LocalJson.stats.playerRecord = 0;
+
+        LocalJson.WriteStatistics();
     }
 }

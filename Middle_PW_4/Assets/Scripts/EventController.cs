@@ -3,5 +3,5 @@ using UnityEngine;
 
 public static class EventController
 {
-    public static Action onRecord;
+    public static Action onScore;
 }

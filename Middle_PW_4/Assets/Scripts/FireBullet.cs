@@ -67,13 +67,11 @@ public class FireBullet : InputData
     /// ¬ыстрел в направлении луча
     /// </summary>
     void Shoot()
-    {   if (hit.normal != Vector3.zero)
-        {
-            // —оздаем экземпл€р и разворачиваем его в направлении луча
-            var fire = Instantiate(bullet, transform.position, Quaternion.LookRotation(hit.normal));
+    {
+        // —оздаем экземпл€р и разворачиваем его в направлении луча
+        var fire = Instantiate(bullet, transform.position, Quaternion.LookRotation(hit.normal));
 
-            // ƒвигаем вперед использу€ локальные координаты
-            fire.GetComponent<Rigidbody>().linearVelocity += transform.forward * speedBullet;
-        }
+        // ƒвигаем вперед использу€ локальные координаты
+        fire.GetComponent<Rigidbody>().linearVelocity += transform.forward * speedBullet;
     }
 }

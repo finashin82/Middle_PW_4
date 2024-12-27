@@ -6,9 +6,9 @@ public class Damage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out IHealth ihealth))
+        if (collision.gameObject.TryGetComponent(out IHealth health))
         {
-            ihealth.TakeDamage(damage);
+            health.TakeDamage(damage);
         }
     }
 }
