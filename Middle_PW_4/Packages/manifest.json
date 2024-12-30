@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.anbi.google-sheet-importer": "https://github.com/AndreyBirchenko/UnityGoogleSheetsImporter.git",
+    "com.cathei.bakingsheet": "https://github.com/cathei/BakingSheet.git?path=UnityProject/Packages/com.cathei.bakingsheet#v4.1.3",
     "com.elringus.unitygoogledrive": "https://github.com/Elringus/UnityGoogleDrive.git#package",
     "com.unity.ai.navigation": "2.0.5",
     "com.unity.collab-proxy": "2.6.0",

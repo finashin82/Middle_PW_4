@@ -6,8 +6,6 @@ public class RandomAnimationZombi : MonoBehaviour
     
     void Start()
     {
-        animator = GetComponent<Animator>();
-
-        //animator.SetFloat("randAnim", Random.Range(0.0f, 1.0f));
+        animator = GetComponent<Animator>();       
     }
 }
